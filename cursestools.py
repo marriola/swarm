@@ -37,7 +37,9 @@ def addstrc(scr, row, col, str, fore, back):
 		pair_index = color_dict[color_pair]
 
 	color_attr = curses.color_pair(pair_index)
-	if pair_index > 7:
+	if fore > 7:
 		color_attr |= curses.A_BOLD
+	if back > 7:
+		color_attr |= curses.A_REVERSE
 
 	scr.addstr(row, col, str, color_attr)

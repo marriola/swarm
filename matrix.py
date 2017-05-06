@@ -69,7 +69,7 @@ class Matrix:
 		return self.cell_at(row, col).find_all_type(type)
 
 
-	def add_drone(self, strategy=None):
+	def add_drone(self, color, strategy=None):
 		row = -1
 		col = -1
 
@@ -77,7 +77,7 @@ class Matrix:
 			row = random.randint(0, self.height - 1)
 			col = random.randint(0, self.width - 1)
 
-		drone = Drone(self.last_drone % 16, row, col, strategy)
+		drone = Drone(color, row, col, strategy)
 		self.cell_at(row, col).add(drone)
 		self.drones.append(drone)
 		self.last_drone += 1
@@ -105,7 +105,7 @@ class Matrix:
 		to_col = from_col + col_offset
 		if (to_row < 0 or to_row >= self.height or
 			to_col < 0 or to_col >= self.width or
-			(blocking and self.type_at(to_row, to_col, piece.__class__) != None)):
+			(blocking and not self.cell_at(to_row, to_col).is_empty())):
 			return
 		self.cell_at(from_row, from_col).remove(piece)
 		self.cell_at(to_row, to_col).add(piece)

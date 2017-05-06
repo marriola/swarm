@@ -5,7 +5,7 @@ next_letter	= 0
 class Drone:
 	def __init__(self, color, row, col, strategy=None):
 		global next_letter
-		self.fore_color = 7 if color in [1,4,5,8] else 0
+		self.fore_color = 7 if color in [0,1,4,5,8] else 0
 		self.color = color
 		self.row = row
 		self.col = col
