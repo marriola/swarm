@@ -44,7 +44,7 @@ def get_pair(fore, back):
 	return color_attr
 
 def addstrc(scr, row, col, str, fore, back):
-	scr.addstr(row, col, str, get_pair(fore, back))
+	scr.insstr(row, col, str, get_pair(fore, back))
 
 def inschc(scr, row, col, ch, fore, back):
 	scr.insch(row, col, ch, get_pair(fore, back))

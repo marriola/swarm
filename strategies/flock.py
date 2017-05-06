@@ -11,7 +11,7 @@ def direction(n):
 
 
 def strategy(radius, flock_threshhold, wander_threshhold):
-	def _flock(matrix, drone):
+	def flock_strategy(matrix, drone):
 		wander = random.randint(0, 100) <= wander_threshhold
 		if wander:
 			random_walk.strategy(matrix, drone)
@@ -34,4 +34,4 @@ def strategy(radius, flock_threshhold, wander_threshhold):
 		else:
 			random_walk.strategy(matrix, drone)
 
-	return _flock
+	return flock_strategy

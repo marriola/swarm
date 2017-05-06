@@ -104,12 +104,12 @@ class Matrix:
 	def move(self, piece, row_offset, col_offset, blocking=True):
 		from_row = piece.row
 		from_col = piece.col
-		to_row = from_row + row_offset
-		to_col = from_col + col_offset
-		if (to_row < 0 or to_row >= self.height or
-			to_col < 0 or to_col >= self.width or
-			(blocking and not self.cell_at(to_row, to_col).is_empty())):
+		to_row = max(0, min(self.height - 1, from_row + row_offset))
+		to_col = max(0, min(self.width - 1, from_col + col_offset))
+
+		if blocking and not self.cell_at(to_row, to_col).is_empty():
 			return
+
 		self.cell_at(from_row, from_col).remove(piece)
 		self.cell_at(to_row, to_col).add(piece)
 		piece.row, piece.col = to_row, to_col
