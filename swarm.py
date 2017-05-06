@@ -18,17 +18,11 @@ DELAY = 0.01
 TURN_LENGTH = 0
 HEIGHT = screen_rows - 3
 WIDTH = screen_columns - 2
+NUM_DRONES = 50
 
 # flock settings
 
-NUM_DRONES = 50
-SEARCH_RADIUS = 7		# the radius that a drone searches for neighbors
-WANDER_THRESHHOLD = 30	# the percentage chance that the drone random walks
-
-# flock threshhold is the distance at which a drone is repulsed from its neighbors.
-# if this constant is an integer, one flock strategy will be generate with that flock threshhold.
-# if this constant is an array, a flock strategy will be generated for each value.
-FLOCK_THRESHHOLD = [0, 5]
+from configs.gridlock import *
 
 
 ###############################################################################
@@ -51,7 +45,8 @@ def main(scr):
 
 	for i in range(0, NUM_DRONES):
 		i = randint(0, len(flock_strategies) - 1)
-		matrix.add_drone(colors[i], flock_strategies[i])
+		color = None if type(FLOCK_THRESHHOLD) is int else colors[i]
+		matrix.add_drone(flock_strategies[i], color)
 
 	draw_border(scr, 0, 0)
 	bottom_bar(scr, '[ Esc to exit ]')

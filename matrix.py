@@ -69,7 +69,7 @@ class Matrix:
 		return self.cell_at(row, col).find_all_type(type)
 
 
-	def add_drone(self, color, strategy=None):
+	def add_drone(self, strategy=None, color=None):
 		row = -1
 		col = -1
 
@@ -77,10 +77,13 @@ class Matrix:
 			row = random.randint(0, self.height - 1)
 			col = random.randint(0, self.width - 1)
 
+		if color == None:
+			color = self.last_drone % 16
+			self.last_drone += 1
+
 		drone = Drone(color, row, col, strategy)
 		self.cell_at(row, col).add(drone)
 		self.drones.append(drone)
-		self.last_drone += 1
 		return self.last_drone - 1
 
 
