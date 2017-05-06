@@ -84,6 +84,7 @@ def draw_border(scr, top, left):
 def bottom_bar(scr, text):
 	text += ' ' * (screen_columns - len(text) - 1)
 	cursestools.addstrc(scr, screen_rows - 1, 0, text, 0, 7)
+	cursestools.inschc(scr, screen_rows - 1, screen_columns - 1, ' ', 0, 7)
 
 
 ###############################################################################

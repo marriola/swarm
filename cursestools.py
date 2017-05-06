@@ -22,8 +22,7 @@ COLORS = [
 	curses.COLOR_WHITE
 ]
 
-
-def addstrc(scr, row, col, str, fore, back):
+def get_pair(fore, back):
 	global last_pair
 	pair_index = -1
 	color_pair = (COLORS[fore], COLORS[back])
@@ -42,4 +41,10 @@ def addstrc(scr, row, col, str, fore, back):
 	if back > 7:
 		color_attr |= curses.A_REVERSE
 
-	scr.addstr(row, col, str, color_attr)
+	return color_attr
+
+def addstrc(scr, row, col, str, fore, back):
+	scr.addstr(row, col, str, get_pair(fore, back))
+
+def inschc(scr, row, col, ch, fore, back):
+	scr.insch(row, col, ch, get_pair(fore, back))
