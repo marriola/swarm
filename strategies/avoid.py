@@ -20,11 +20,11 @@ def strategy(radius, wander_threshhold):
         nearest = matrix.nearest_neighbor(drone.row, drone.col, radius)
         if nearest != None:
             row, col = nearest.row, nearest.col
-            down = row - drone.row
-            right = col - drone.col
+            down = drone.row - row
+            right = drone.col - col
 
-            downdir = direction(down) * -1
-            rightdir = direction(right) * -1
+            downdir = direction(down)
+            rightdir = direction(right)
 
             matrix.move(drone, downdir, rightdir)
         else:

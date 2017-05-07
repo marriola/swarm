@@ -23,7 +23,7 @@ NUM_DRONES = 50
 
 # flock settings
 
-from configs.variety import *
+from configs.notice_me_sempai import *
 
 
 ###############################################################################
@@ -53,7 +53,7 @@ def main(scr):
 
 	# add avoid strategy drones
 
-	avoid_strategy = avoid.strategy(SEARCH_RADIUS, 30)
+	avoid_strategy = avoid.strategy(5, 30)
 
 	for i in range(0, NUM_DRONES / 4):
 		matrix.add_drone(avoid_strategy, 4)
